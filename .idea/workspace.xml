@@ -4,13 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="b970309f-30ae-458b-bc0b-d26f3d1d02de" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Barcode.iml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Main.java" afterDir="false" />
+    <list default="true" id="b970309f-30ae-458b-bc0b-d26f3d1d02de" name="Changes" comment=" - Vytvoreni a napsani abstraktni tridy CarovyKod (hlavicka metody zakoduj a spolecna metoda vytvorObrazek) jako zaklad pro druhy kodu.&#10;&#10; - Vytvoreni a cele napsani tridy Code39 (HashMapa a metoda zakoduj)">
+      <change afterPath="$PROJECT_DIR$/src/Code128.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -48,21 +44,21 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "Application.Main.executor": "Run",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "git-widget-placeholder": "master",
-    "kotlin-language-version-configured": "true",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs_package_manager_path": "npm",
-    "onboarding.tips.debug.path": "D:/Rostik/IT 2024-2025 _________________________/Barcode/src/Main.java",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;Application.Main.executor&quot;: &quot;Run&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;master&quot;,
+    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;onboarding.tips.debug.path&quot;: &quot;D:/Rostik/IT 2024-2025 _________________________/Barcode/src/Main.java&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
-}]]></component>
+}</component>
   <component name="SharedIndexes">
     <attachedChunks>
       <set>
@@ -82,11 +78,25 @@
       <workItem from="1747165595946" duration="130000" />
       <workItem from="1747945368641" duration="45000" />
       <workItem from="1748005403593" duration="12000" />
-      <workItem from="1748375528453" duration="3254000" />
+      <workItem from="1748375528453" duration="3506000" />
+      <workItem from="1748444651797" duration="3644000" />
     </task>
+    <task id="LOCAL-00001" summary=" - Vytvoreni a napsani abstraktni tridy CarovyKod (hlavicka metody zakoduj a spolecna metoda vytvorObrazek) jako zaklad pro druhy kodu.&#10;&#10; - Vytvoreni a cele napsani tridy Code39 (HashMapa a metoda zakoduj)">
+      <option name="closed" value="true" />
+      <created>1748379678257</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1748379678257</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value=" - Vytvoreni a napsani abstraktni tridy CarovyKod (hlavicka metody zakoduj a spolecna metoda vytvorObrazek) jako zaklad pro druhy kodu.&#10;&#10; - Vytvoreni a cele napsani tridy Code39 (HashMapa a metoda zakoduj)" />
+    <option name="LAST_COMMIT_MESSAGE" value=" - Vytvoreni a napsani abstraktni tridy CarovyKod (hlavicka metody zakoduj a spolecna metoda vytvorObrazek) jako zaklad pro druhy kodu.&#10;&#10; - Vytvoreni a cele napsani tridy Code39 (HashMapa a metoda zakoduj)" />
   </component>
 </project>
