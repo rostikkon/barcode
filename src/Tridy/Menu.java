@@ -1,18 +1,25 @@
+package Tridy;
+
 import javax.swing.*;
 import javax.swing.filechooser.FileNameExtensionFilter;
 import java.io.File;
 import java.io.IOException;
 import java.util.Scanner;
-
+/**
+ * Trida pro zobrazeni a obsluhu uzivatelskeho rozhrani programu.
+ */
 public class Menu {
 
     private Scanner scanner = new Scanner(System.in);
     private Historie historie = new Historie();
 
+    /**
+     * Spousti hlavni smycku programu s menu.
+     */
     public void spustit() {
         System.out.println("----------------------------------------\n" +
                 "Vitejte v Generatoru carovych kodu!\n" +
-                "Tento nastroj podporuje typy Code39 a Code128.\n" +
+                "Tento nastroj podporuje typy Tridy.Code39 a Tridy.Code128.\n" +
                 "----------------------------------------");
         while (true) {
 
@@ -45,20 +52,26 @@ public class Menu {
         }
     }
 
+    /**
+     * Zobrazuje hlavni menu programu.
+     */
     private void zobrazitHlavniMenu() {
         System.out.println("\n--- Hlavni menu ---");
         System.out.println("1. Generace kodu");
         System.out.println("2. Informace o typech kodu");
-        System.out.println("3. Historie");
+        System.out.println("3. Tridy.Historie");
         System.out.println("4. Ukoncit program");
         System.out.print("Zadejte volbu: ");
     }
 
+    /**
+     * Spousti podmenu pro generaci carovych kodu.
+     */
     private void generaceKodu() {
         while (true) {
             System.out.println("\n--- Generace kodu ---");
-             System.out.println("1. Code39");
-            System.out.println("2. Code128");
+             System.out.println("1. Tridy.Code39");
+            System.out.println("2. Tridy.Code128");
             System.out.println("3. Informace o typech kodu (co podporuji)");
             System.out.println("4. Zpatky");
             System.out.print("Zadejte volbu: ");
@@ -85,22 +98,25 @@ public class Menu {
         }
     }
 
+    /**
+     * Zpracovava generaci kodu Code39.
+     */
     private void generaceCode39() {
 
         Code39 kod = new Code39();
         String vstup;
         while (true) {
-            System.out.print("Zadejte text pro Code39: ");
+            System.out.print("Zadejte text pro Tridy.Code39: ");
             vstup = scanner.nextLine();
             if (kod.jePlatnyVstupCode39(vstup)) {
                 break;
             } else {
-                System.out.println("Neplatny vstup! Code39 podporuje pouze velka pismena (A-Z), cislice (0-9), znaky: - . $ / + % a mezeru. Zadejte text znovu.");
+                System.out.println("Neplatny vstup! Tridy.Code39 podporuje pouze velka pismena (A-Z), cislice (0-9), znaky: - . $ / + % a mezeru. Zadejte text znovu.");
             }
         }
 
         while (true) {
-            System.out.println("\n--- Code39 ---");
+            System.out.println("\n--- Tridy.Code39 ---");
             System.out.println("1. Vygenerovat klasicky kod");
             System.out.println("2. Vygenerovat a ulozit klasicky kod");
             System.out.println("3. Vybrat parametry kodu");
@@ -117,7 +133,7 @@ public class Menu {
                 case "1":
                     try {
                         kod.vytvoritObrazek(vstup, "code39.png");
-                        System.out.println("\n== Code39 vygenerovan! ==");
+                        System.out.println("\n== Tridy.Code39 vygenerovan! ==");
                         historie.pridatZaznam(vstup, TypKodu.CODE39, 70, Barva.BILA, Barva.CERNA, false);
                     } catch (IOException e) {
                         System.out.println("Chyba: " + e.getMessage());
@@ -128,7 +144,7 @@ public class Menu {
                         String cesta = ulozitObrazek(kod, vstup);
                         if (cesta != null) {
                             System.out.println("\nCesta k souboru: " + cesta);
-                            System.out.println("== Code39 vygenerovan a ulozen! ==");
+                            System.out.println("== Tridy.Code39 vygenerovan a ulozen! ==");
                             historie.pridatZaznam(vstup, TypKodu.CODE39, 70, Barva.BILA, Barva.CERNA, false);
                             System.out.print("Stisknete klavesu Enter pro pokracovani");
                             scanner.nextLine();
@@ -157,22 +173,25 @@ public class Menu {
         }
     }
 
+    /**
+     * Zpracovava generaci kodu Code128.
+     */
     private void generaceCode128() {
 
         Code128 kod = new Code128();
         String vstup;
         while (true) {
-            System.out.print("Zadejte text pro Code128: ");
+            System.out.print("Zadejte text pro Tridy.Code128: ");
             vstup = scanner.nextLine();
             if (kod.jePlatnyVstupCode128(vstup)) {
                 break;
             } else {
-                System.out.println("Neplatny vstup! Code128 podporuje znaky ASCII (0-127). Zadejte text znovu.");
+                System.out.println("Neplatny vstup! Tridy.Code128 podporuje znaky ASCII (0-127). Zadejte text znovu.");
             }
         }
 
         while (true) {
-            System.out.println("\n--- Code128 ---");
+            System.out.println("\n--- Tridy.Code128 ---");
             System.out.println("1. Vygenerovat klasicky kod");
             System.out.println("2. Vygenerovat a ulozit klasicky kod");
             System.out.println("3. Vybrat parametry kodu");
@@ -189,7 +208,7 @@ public class Menu {
                 case "1":
                     try {
                         kod.vytvoritObrazek(vstup, "code128.png");
-                        System.out.println("\n== Code128 vygenerovan! ==");
+                        System.out.println("\n== Tridy.Code128 vygenerovan! ==");
                         historie.pridatZaznam(vstup, TypKodu.CODE128, 70, Barva.BILA, Barva.CERNA, false);
                     } catch (IOException e) {
                         System.out.println("Chyba: " + e.getMessage());
@@ -200,7 +219,7 @@ public class Menu {
                         String cesta = ulozitObrazek(kod, vstup);
                         if (cesta != null) {
                             System.out.println("\nCesta k souboru: " + cesta);
-                            System.out.println("== Code128 vygenerovan a ulozen! ==");
+                            System.out.println("== Tridy.Code128 vygenerovan a ulozen! ==");
                             historie.pridatZaznam(vstup, TypKodu.CODE128, 70, Barva.BILA, Barva.CERNA, false);
                             System.out.print("Stisknete klavesu Enter pro pokracovani");
                             scanner.nextLine();
@@ -229,30 +248,40 @@ public class Menu {
         }
     }
 
+    /**
+     * Zobrazuje informace o typech carovych kodu.
+     */
     private void zobrazitInformace() {
         System.out.println("\n--- INFORMACE O KODECH ---");
 
-        System.out.println("\nCode39:");
+        System.out.println("\nTridy.Code39:");
         System.out.println("- Podporuje pouze velka pismena (A-Z), cislice (0-9)");
         System.out.println("- Take umi nektere specialni znaky: - . $ / + % a mezera");
         System.out.println("- Kazdy znak je reprezentovan 9 cary (5 cernych, 4 bile)");
         System.out.println("- Je vhodny pro jednodussi kody, snazsi cteni i bez kontroly");
 
-        System.out.println("\nCode128:");
+        System.out.println("\nTridy.Code128:");
         System.out.println("- Podporuje velka i mala pismena (A-Z, a-z), cislice (0-9)");
         System.out.println("- Take umi vice nez 100 specialnich znaku (vsechny ASCII hodnoty 0-127)");
         System.out.println("- Efektivnejsi kodovani, mensi fyzicka velikost pri stejne delce textu");
         System.out.println("- Obsahuje kontrolni soucet (checksum) pro vyssi spolehlivost");
 
         System.out.println("\nDoporuceni:");
-        System.out.println("- Pokud potrebujes kratky, spolehlivy a tiskove kompaktní kod (napr. pro obchod, logistiku, sklad) -> Code128");
-        System.out.println("- Pokud staci zakladni znaky a ocenis jednoduchost -> Code39");
-        System.out.println("- Pro tisk je lepsi Code128, protoze je kratsi a jasne citelny i v mensi velikosti");
+        System.out.println("- Pokud potrebujes kratky, spolehlivy a tiskove kompaktní kod (napr. pro obchod, logistiku, sklad) -> Tridy.Code128");
+        System.out.println("- Pokud staci zakladni znaky a ocenis jednoduchost -> Tridy.Code39");
+        System.out.println("- Pro tisk je lepsi Tridy.Code128, protoze je kratsi a jasne citelny i v mensi velikosti");
 
         System.out.println("\nZpet se vratite stisknutim klavesy Enter");
         scanner.nextLine();
     }
 
+    /**
+     * Uklada obrazek caroveho kodu do uzivatelem vybraneho souboru.
+     * <p>Poznamka: Implementace ukladani obrazku byla vytvorena s pomoci umele inteligence.</p>
+     * @param kod Instance caroveho kodu.
+     * @param vstup Vstupni data pro kod.
+     * @return Cesta k ulozenemu souboru nebo null pri zruseni.
+     */
     private String ulozitObrazek(CarovyKod kod, String vstup) {
         JFileChooser fileChooser = new JFileChooser(new File("C:\\Users\\Jmeno\\Barcodes"));
         fileChooser.setFileFilter(new FileNameExtensionFilter("PNG soubory", "png"));

@@ -1,3 +1,7 @@
+package Tridy;
+/**
+ * Enum definujici dostupne barvy pro carove kody.
+ */
 public enum Barva {
     BILA,
     CERNA,

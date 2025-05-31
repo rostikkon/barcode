@@ -1,18 +1,32 @@
+package Tridy;
+
 import javax.swing.*;
 import javax.swing.filechooser.FileNameExtensionFilter;
 import java.io.File;
 import java.io.IOException;
 import java.util.Scanner;
 import java.awt.Color;
-
+/**
+ * Trida pro nastaveni parametru caroveho kodu.
+ */
 public class ParametryKodu {
     private static Scanner scanner = new Scanner(System.in);
     private Zaznam posledniGenerovanyZaznam;
 
+    /**
+     * Vraci posledni vygenerovany zaznam.
+     * @return Posledni zaznam nebo null, pokud zadny neexistuje.
+     */
     public Zaznam getPosledniGenerovanyZaznam() {
         return posledniGenerovanyZaznam;
     }
 
+    /**
+     * Spousti nastaveni parametru a generování kodu.
+     * @param kod Instance caroveho kodu.
+     * @param vstup Vstupni data pro kod.
+     * @param typ Typ kodu (Code39 nebo CODE128).
+     */
     public void nastavitParametry(CarovyKod kod, String vstup, TypKodu typ) {
         int vyska = 80;
         Barva barvaPozadi = Barva.BILA;
@@ -21,8 +35,8 @@ public class ParametryKodu {
 
         while (true) {
             System.out.println("\n--- Nastaveni parametru ---");
-            System.out.println("1. Barva pozadi (aktualni: " + getNazevBarvy(barvaPozadi) + ")");
-            System.out.println("2. Barva car (aktualni: " + getNazevBarvy(barvaCar) + ")");
+            System.out.println("1. Tridy.Barva pozadi (aktualni: " + getNazevBarvy(barvaPozadi) + ")");
+            System.out.println("2. Tridy.Barva car (aktualni: " + getNazevBarvy(barvaCar) + ")");
             System.out.println("3. Zobrazit text pod kodem (aktualni: " + getZobrazeniTextu(zobrazitTextPodKodem) + ")");
             System.out.println("4. Vyska (aktualni: " + vyska + ")");
             System.out.println("5. Vygenerovat kod");
@@ -70,6 +84,11 @@ public class ParametryKodu {
         }
     }
 
+    /**
+     * Umoznuje uzivateli vybrat barvu.
+     * @param typBarvy Typ barvy (pozadi nebo cary).
+     * @return Vybrana barva nebo null pri navratu.
+     */
     private Barva vybratBarvu(String typBarvy) {
         while (true) {
         System.out.println("\n--- Vyber barvy pro " + typBarvy + " ---");
@@ -128,6 +147,11 @@ public class ParametryKodu {
         }
     }
 
+    /**
+     * Vraci textovy nazev barvy.
+     * @param barva Barva k prevedeni na nazev.
+     * @return Textovy nazev barvy.
+     */
     private String getNazevBarvy(Barva barva) {
         switch (barva) {
             case BILA: return "bila";
@@ -147,6 +171,11 @@ public class ParametryKodu {
         }
     }
 
+    /**
+     * Prevadi barvu na objekt Color.
+     * @param barva Barva k prevedeni.
+     * @return Objekt Color odpovidajici barve.
+     */
     private Color getColorBarvy(Barva barva) {
         switch (barva) {
             case BILA: return Color.WHITE;
@@ -166,6 +195,11 @@ public class ParametryKodu {
         }
     }
 
+    /**
+     * Nastavuje zobrazeni textu pod kodem.
+     * @param aktualniZobrazeni Aktualni stav zobrazeni.
+     * @return Nove nastaveni zobrazeni textu.
+     */
     private boolean nastavitZobrazeniTextu(boolean aktualniZobrazeni) {
         while (true) {
         System.out.println("\n--- Nastaveni zobrazeni textu pod kodem ---");
@@ -193,6 +227,11 @@ public class ParametryKodu {
         }
     }
 
+    /**
+     * Vraci textovy popis zobrazeni textu.
+     * @param zobrazeni Stav zobrazeni textu.
+     * @return Popis jako "zobrazen" nebo "skryt".
+     */
     private String getZobrazeniTextu(boolean zobrazeni) {
         if (zobrazeni) {
             return "zobrazen";
@@ -201,6 +240,10 @@ public class ParametryKodu {
         }
     }
 
+    /**
+     * Nastavuje vysku kodu.
+     * @return Nova vyska v rozmezi 30-150.
+     */
     private int nastavitVysku() {
         while (true) {
             System.out.print("Zadejte vysku (30-150): ");
@@ -218,6 +261,16 @@ public class ParametryKodu {
         }
     }
 
+    /**
+     * Generuje kod s nastavenymi parametry.
+     * @param kod Instance caroveho kodu.
+     * @param vstup Vstupni data pro kod.
+     * @param typ kódů Typ kodu.
+     * @param vyska Vyska kodu.
+     * @param barvaPozadi Barva pozadi.
+     * @param barvaCar Barva car.
+     * @param zobrazitTextPodKodem Zobrazeni textu pod kodem.
+     */
     private void vygenerovatKod(CarovyKod kod, String vstup, TypKodu typ, int vyska, Barva barvaPozadi, Barva barvaCar, boolean zobrazitTextPodKodem) {
         try {
             String soubor;
@@ -235,6 +288,17 @@ public class ParametryKodu {
         }
     }
 
+    /**
+     * Generuje a uklada kod s nastavenymi parametry.
+     * <p>Poznamka: Implementace ukladani obrazku byla vytvorena s pomoci umele inteligence.</p>
+     * @param kod Instance caroveho kodu.
+     * @param vstup Vstupni data pro kod.
+     * @param typ Typ kodu.
+     * @param vyska Vyska kodu.
+     * @param barvaPozadi Barva pozadi.
+     * @param barvaCar Barva car.
+     * @param zobrazitTextPodKodem Zobrazeni textu pod kodem.
+     */
     private void vygenerovatAUlozitKod(CarovyKod kod, String vstup, TypKodu typ, int vyska, Barva barvaPozadi, Barva barvaCar, boolean zobrazitTextPodKodem) {
         JFileChooser fileChooser = new JFileChooser(new File("C:\\Users\\Jmeno\\Barcodes"));
         fileChooser.setFileFilter(new FileNameExtensionFilter("PNG soubory", "png"));

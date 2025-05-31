@@ -1,3 +1,5 @@
+package Tridy;
+
 import javax.swing.*;
 import java.io.*;
 import java.time.LocalDateTime;
@@ -6,27 +8,36 @@ import java.util.Scanner;
 import java.awt.Color;
 import javax.swing.filechooser.FileNameExtensionFilter;
 
+/**
+ * Trida pro spravu historie generovanych carovych kodu.
+ */
 public class Historie {
     private ArrayList<Zaznam> zaznamy;
     private Scanner scanner;
     private final String cestaKSouboru = "Soubory/historie.txt";
 
+    /**
+     * Vytvari novou instanci historie a nacita zaznamy ze souboru.
+     */
     public Historie() {
         zaznamy = new ArrayList<>();
         scanner = new Scanner(System.in);
         nacistZeSouboru();
     }
 
+    /**
+     * Spousti menu pro praci s historií.
+     */
     public void spustit() {
         while (true) {
             if (zaznamy.isEmpty()) {
-                System.out.println("\nHistorie je prazdna.");
+                System.out.println("\nTridy.Historie je prazdna.");
                 System.out.print("Stisknete klavesu Enter pro navrat do hlavniho menu: ");
                 scanner.nextLine();
                 return;
             }
 
-            System.out.println("\n--- Historie ---");
+            System.out.println("\n--- Tridy.Historie ---");
             System.out.println("1. Cela historie");
             System.out.println("2. Tridit historii");
             System.out.println("3. Zpatky");
@@ -51,6 +62,9 @@ public class Historie {
         }
     }
 
+    /**
+     * Zobrazuje vsechny zaznamy v historii s moznostmi upravy.
+     */
     private void zobrazitCelouHistorii() {
         while (true) {
             System.out.println("\n--- Cela historie ---");
@@ -83,11 +97,14 @@ public class Historie {
         }
     }
 
+    /**
+     * Spousti menu pro trideni a filtrovani historie.
+     */
     private void tridit() {
         while (true) {
             System.out.println("\n--- Tridit historii ---");
-            System.out.println("1. Jenom Code39");
-            System.out.println("2. Jenom Code128");
+            System.out.println("1. Jenom Tridy.Code39");
+            System.out.println("2. Jenom Tridy.Code128");
             System.out.println("3. Dnesni historie");
             System.out.println("4. Posledni 24 hodin");
             System.out.println("5. Posledni 7 dnu");
@@ -103,10 +120,10 @@ public class Historie {
 
             switch (volba) {
                 case "1":
-                    filtrovatAProvest("Code39", vytvoritFiltrCode39());
+                    filtrovatAProvest("Tridy.Code39", vytvoritFiltrCode39());
                     break;
                 case "2":
-                    filtrovatAProvest("Code128", vytvoritFiltrCode128());
+                    filtrovatAProvest("Tridy.Code128", vytvoritFiltrCode128());
                     break;
                 case "3":
                     filtrovatAProvest("Dnesni historie", vytvoritFiltrDnesni());
@@ -126,6 +143,11 @@ public class Historie {
         }
     }
 
+    /**
+     * Zobrazuje a zpracovava filtrovane zaznamy.
+     * @param nazev Nazev kategorie filtru.
+     * @param filtrovane Seznam filtrovanych zaznamu.
+     */
     private void filtrovatAProvest(String nazev, ArrayList<Zaznam> filtrovane) {
         while (true) {
             if (filtrovane.isEmpty()) {
@@ -165,6 +187,10 @@ public class Historie {
         }
     }
 
+    /**
+     * Maze konkretni zaznam ze seznamu.
+     * @param seznam Seznam zaznamu k uprave.
+     */
     private void smazatKonkretni(ArrayList<Zaznam> seznam) {
         while (true) {
             if (seznam.isEmpty()) {
@@ -185,7 +211,7 @@ public class Historie {
                     Zaznam smazany = seznam.remove(index);
                     zaznamy.remove(smazany);
                     ulozitDoSouboru();
-                    System.out.println("Zaznam smazan: " + smazany.getVstup());
+                    System.out.println("Tridy.Zaznam smazan: " + smazany.getVstup());
 
                     System.out.println("Chcete smazat dalsi?");
                     System.out.println("1. Ano");
@@ -208,7 +234,10 @@ public class Historie {
         }
     }
 
-
+    /**
+     * Generuje kod z vybraneho zaznamu v historii.
+     * @param seznam Seznam zaznamu k vyberu.
+     */
     private void generovatZHistorie(ArrayList<Zaznam> seznam) {
         if (seznam.isEmpty()) {
             System.out.println("\nZadny zaznam k generovani.");
@@ -281,7 +310,11 @@ public class Historie {
         }
     }
 
-
+    /**
+     * Převádí barvu z enumu na objekt Color.
+     * @param barva Barva k převedení.
+     * @return Objekt Color odpovídající barvě.
+     */
     private Color getColorBarvy(Barva barva) {
         switch (barva) {
             case BILA: return Color.WHITE;
@@ -301,11 +334,23 @@ public class Historie {
         }
     }
 
+    /**
+     * Přidává nový záznam do historie a ukládá do souboru.
+     * @param vstup Vstupní data kódu.
+     * @param typ Typ kódu.
+     * @param vyska Výška kódu.
+     * @param barvaPozadi Barva pozadí kódu.
+     * @param barvaCar Barva čar kódu.
+     * @param zobrazitTextPodKodem Zobrazení textu pod kódem.
+     */
     public void pridatZaznam(String vstup, TypKodu typ, int vyska, Barva barvaPozadi, Barva barvaCar, boolean zobrazitTextPodKodem) {
         zaznamy.add(new Zaznam(vstup, typ, null, vyska, barvaPozadi, barvaCar, zobrazitTextPodKodem));
         ulozitDoSouboru();
     }
 
+    /**
+     * Načítá záznamy z historie ze souboru.
+     */
     private void nacistZeSouboru() {
         File soubor = new File(cestaKSouboru);
         if (!soubor.exists()) {
@@ -327,6 +372,9 @@ public class Historie {
         }
     }
 
+    /**
+     * Ukládá historii do souboru.
+     */
     private void ulozitDoSouboru() {
         try (BufferedWriter writer = new BufferedWriter(new FileWriter(cestaKSouboru))) {
             for (Zaznam zaznam : zaznamy) {
@@ -338,6 +386,10 @@ public class Historie {
         }
     }
 
+    /**
+     * Zobrazuje seznam záznamů.
+     * @param seznam Seznam záznamů k zobrazení.
+     */
     private void zobrazitZaznamy(ArrayList<Zaznam> seznam) {
         if (seznam.isEmpty()) {
             System.out.println("Zadny zaznam k zobrazeni.");
@@ -363,6 +415,9 @@ public class Historie {
         }
     }
 
+    /**
+     * Maže celou historii.
+     */
     private void smazatCelouHistorii() {
         zaznamy.clear();
         ulozitDoSouboru();
@@ -371,6 +426,10 @@ public class Historie {
         scanner.nextLine();
     }
 
+    /**
+     * Maže všechny záznamy ve filtrované kategorii.
+     * @param filtrovane Seznam filtrovaných záznamů k smazání.
+     */
     private void smazatFiltrovane(ArrayList<Zaznam> filtrovane) {
         zaznamy.removeAll(filtrovane);
         ulozitDoSouboru();
@@ -379,6 +438,10 @@ public class Historie {
         scanner.nextLine();
     }
 
+    /**
+     * Vytváří filtr pro záznamy typu Code39.
+     * @return Seznam záznamů typu Code39.
+     */
     private ArrayList<Zaznam> vytvoritFiltrCode39() {
         ArrayList<Zaznam> filtrovane = new ArrayList<>();
         for (Zaznam zaznam : zaznamy) {
@@ -389,6 +452,10 @@ public class Historie {
         return filtrovane;
     }
 
+    /**
+     * Vytváří filtr pro záznamy typu Code128.
+     * @return Seznam záznamů typu Code128.
+     */
     private ArrayList<Zaznam> vytvoritFiltrCode128() {
         ArrayList<Zaznam> filtrovane = new ArrayList<>();
         for (Zaznam zaznam : zaznamy) {
@@ -399,6 +466,10 @@ public class Historie {
         return filtrovane;
     }
 
+    /**
+     * Vytváří filtr pro dnešní záznamy.
+     * @return Seznam záznamů z dnešního dne.
+     */
     private ArrayList<Zaznam> vytvoritFiltrDnesni() {
         ArrayList<Zaznam> filtrovane = new ArrayList<>();
         LocalDateTime dnes = LocalDateTime.now().withHour(0).withMinute(0).withSecond(0);
@@ -410,6 +481,10 @@ public class Historie {
         return filtrovane;
     }
 
+    /**
+     * Vytváří filtr pro záznamy z posledních 24 hodin.
+     * @return Seznam záznamů z posledních 24 hodin.
+     */
     private ArrayList<Zaznam> vytvoritFiltr24Hodin() {
         ArrayList<Zaznam> filtrovane = new ArrayList<>();
         LocalDateTime pred24Hodinami = LocalDateTime.now().minusHours(24).withSecond(0);
@@ -421,6 +496,10 @@ public class Historie {
         return filtrovane;
     }
 
+    /**
+     * Vytváří filtr pro záznamy z posledních 7 dní.
+     * @return Seznam záznamů z posledních 7 dní.
+     */
     private ArrayList<Zaznam> vytvoritFiltr7Dni() {
         ArrayList<Zaznam> filtrovane = new ArrayList<>();
         LocalDateTime pred7Dny = LocalDateTime.now().minusDays(7).withHour(0).withMinute(0).withSecond(0);
@@ -432,6 +511,10 @@ public class Historie {
         return filtrovane;
     }
 
+    /**
+     * Vytváří filtr pro záznamy z posledního měsíce.
+     * @return Seznam záznamů z posledního měsíce.
+     */
     private ArrayList<Zaznam> vytvoritFiltrMesic() {
         ArrayList<Zaznam> filtrovane = new ArrayList<>();
         LocalDateTime predMesicem = LocalDateTime.now().minusMonths(1).withHour(0).withMinute(0).withSecond(0);
@@ -443,6 +526,18 @@ public class Historie {
         return filtrovane;
     }
 
+    /**
+     * Uklada obrazek caroveho kodu z historie.
+     * <p>Poznamka: Implementace ukladani obrazku byla vytvorena s pomoci umele inteligence.</p>
+     * @param kod Instance caroveho kodu.
+     * @param vstup Vstupni data kodu.
+     * @param vyska Vyska kodu.
+     * @param barvaPozadi Barva pozadi kodu.
+     * @param barvaCar Barva car kodu.
+     * @param zobrazitTextPodKodem Zobrazeni textu pod kodem.
+     * @return Cesta k ulozenemu souboru nebo null pri zruseni.
+     * @throws IOException Pokud dojde k chybe pri ukladani.
+     */
     private String ulozitObrazek(CarovyKod kod, String vstup, int vyska, Barva barvaPozadi, Barva barvaCar, boolean zobrazitTextPodKodem) throws IOException {
         JFileChooser fileChooser = new JFileChooser(new File("C:\\Users\\Jmeno\\Barcodes"));
         fileChooser.setFileFilter(new FileNameExtensionFilter("PNG soubory", "png"));
@@ -468,4 +563,7 @@ public class Historie {
         return null;
     }
 
+    public ArrayList<Zaznam> getZaznamy() {
+        return zaznamy;
+    }
 }

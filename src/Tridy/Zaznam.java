@@ -1,6 +1,11 @@
+package Tridy;
+
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
+/**
+ * Trida pro uchovavani informaci o generovanem carovem kodu.
+ */
 public class Zaznam {
     private String vstup;
     private TypKodu typ;
@@ -10,6 +15,16 @@ public class Zaznam {
     private Barva barvaCar;
     private boolean zobrazitTextPodKodem;
 
+    /**
+     * Vytvari novy zaznam o carovem kodu.
+     * @param vstup Vstupni data kodu.
+     * @param typ Typ caroveho kodu.
+     * @param cas Cas vytvoreni kodu.
+     * @param vyska Vyska kodu.
+     * @param barvaPozadi Barva pozadi kodu.
+     * @param barvaCar Barva car kodu.
+     * @param zobrazitTextPodKodem Zobrazeni textu pod kodem.
+     */
     public Zaznam(String vstup, TypKodu typ, LocalDateTime cas, int vyska, Barva barvaPozadi, Barva barvaCar, boolean zobrazitTextPodKodem) {
         this.vstup = vstup;
         this.typ = typ;
@@ -44,6 +59,10 @@ public class Zaznam {
         return barvaCar;
     }
 
+    /**
+     * Kontroluje, zda se ma zobrazit text pod kodem.
+     * @return True, pokud se text zobrazuje, jinak false.
+     */
     public boolean isZobrazitTextPodKodem() {
         return zobrazitTextPodKodem;
     }
@@ -56,6 +75,10 @@ public class Zaznam {
         }
     }
 
+    /**
+     * Uklada zaznam do formatu pro soubor.
+     * @return Retezec s daty zaznamu oddelenymi znakem |.
+     */
     public String ulozitDoSouboru() {
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm:ss");
         return String.join("|",
@@ -68,6 +91,12 @@ public class Zaznam {
                 String.valueOf(zobrazitTextPodKodem));
     }
 
+    /**
+     * Nacitá zaznam z retezce ulozeneho v souboru.
+     * @param radek Retezec s daty zaznamu.
+     * @return Novy zaznam.
+     * @throws IllegalArgumentException Pokud je format retezce neplatny.
+     */
     public static Zaznam nacistZeSouboru(String radek) {
         String[] casti = radek.split("\\|");
         if (casti.length != 7) {

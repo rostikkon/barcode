@@ -1,3 +1,5 @@
+package Tridy;
+
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
@@ -6,6 +8,9 @@ import java.util.HashMap;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+/**
+ * Trida pro generovani caroveho kodu Code128.
+ */
 public class Code128 extends CarovyKod {
 
     private static final HashMap<Integer, String> MAPA_CODE128 = new HashMap<>();
@@ -16,6 +21,10 @@ public class Code128 extends CarovyKod {
     private static final int CODE_B = 100;
     private static final int CODE_C = 99;
 
+    /**
+     * Inicializuje mapu pro kodovani Code128 z externiho souboru.
+     * @throws RuntimeException Pokud dojde k chybe pri cteni souboru.
+     */
     private static void inicializujMapu() {
         if (mapaInicializovana) {
             return;
@@ -36,6 +45,12 @@ public class Code128 extends CarovyKod {
         }
     }
 
+    /**
+     * Koduje vstupni retezec do formatu Code128.
+     * @param vstup Vstupni retezec k zakodovani.
+     * @return Zakodovany retezec jako posloupnost 0 a 1.
+     * @throws IllegalArgumentException Pokud je vstup neplatny nebo obsahuje nepodporovane znaky.
+     */
     @Override
     public String zakoduj(String vstup) {
         inicializujMapu();
@@ -111,6 +126,11 @@ public class Code128 extends CarovyKod {
         return vzor.toString();
     }
 
+    /**
+     * Kontroluje, zda je vstup platny pro Code128.
+     * @param vstup Vstupni retezec k overeni.
+     * @return True, pokud je vstup platny, jinak false.
+     */
     public boolean jePlatnyVstupCode128(String vstup) {
         if (vstup == null || vstup.isEmpty()) {
             return false;
