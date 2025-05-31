@@ -8,7 +8,7 @@ public abstract class CarovyKod {
 
     public abstract String zakoduj(String vstup);
 
-    public void vytvorObrazek(String data, String cestaKSouboru) throws IOException {
+    public void vytvoritObrazek(String data, String cestaKSouboru) throws IOException {
         if (cestaKSouboru == null || cestaKSouboru.isEmpty()) {
             throw new IllegalArgumentException("Cesta k souboru nesmi byt prazdna!");
         }
