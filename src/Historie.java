@@ -239,24 +239,6 @@ public class Historie {
                             throw new IllegalStateException("Neznamy typ kodu: " + z.getTyp());
                     }
 
-                    String soubor;
-                    if (z.getTyp() == TypKodu.CODE39) {
-                        soubor = "code39.png";
-                    } else {
-                        soubor = "code128.png";
-                    }
-
-                    try {
-                        String cesta = ulozitObrazek(kod, z.getVstup(), z.getVyska(), z.getBarvaPozadi(), z.getBarvaCar(), z.isZobrazitTextPodKodem());
-                        if (cesta != null) {
-                            System.out.println("\nCesta k souboru: " + cesta);
-                            System.out.println("== " + z.getTyp() + " vygenerovan a ulozen! ==");
-                            pridatZaznam(z.getVstup(), z.getTyp(), z.getVyska(), z.getBarvaPozadi(), z.getBarvaCar(), z.isZobrazitTextPodKodem());
-                        }
-                    } catch (IOException e) {
-                        System.out.println("Chyba pri ukladani: " + e.getMessage());
-                    }
-
                     System.out.println("Chcete ulozit kod?");
                     System.out.println("1. Ano");
                     System.out.println("2. Ne");
@@ -266,17 +248,25 @@ public class Historie {
                         System.out.println("Neplatna volba, zadejte 1 nebo 2.");
                         continue;
                     }
-                    if (ulozit.equals("1")) {
-                        try {
-                            String cesta = ulozitObrazek(kod, z.getVstup(), z.getVyska(), z.getBarvaPozadi(), z.getBarvaCar(), z.isZobrazitTextPodKodem());
+
+                    try {
+                        String cesta = null;
+                        if (ulozit.equals("1")) {
+                            cesta = ulozitObrazek(kod, z.getVstup(), z.getVyska(), z.getBarvaPozadi(), z.getBarvaCar(), z.isZobrazitTextPodKodem());
                             if (cesta != null) {
                                 System.out.println("\nCesta k souboru: " + cesta);
                                 System.out.println("== " + z.getTyp() + " vygenerovan a ulozen! ==");
                                 pridatZaznam(z.getVstup(), z.getTyp(), z.getVyska(), z.getBarvaPozadi(), z.getBarvaCar(), z.isZobrazitTextPodKodem());
                             }
-                        } catch (IOException e) {
-                            System.out.println("Chyba pri ukladani: " + e.getMessage());
+                        } else {
+                            String vychoziSoubor = "C:\\Users\\Jmeno\\Barcodes\\" + (z.getTyp() == TypKodu.CODE39 ? "code39.png" : "code128.png");
+                            kod.vytvoritObrazek(z.getVstup(), vychoziSoubor, z.getVyska(), getColorBarvy(z.getBarvaPozadi()), getColorBarvy(z.getBarvaCar()), z.isZobrazitTextPodKodem());
+                            System.out.println("\nCesta k souboru: " + vychoziSoubor);
+                            System.out.println("== " + z.getTyp() + " vygenerovan! ==");
+                            pridatZaznam(z.getVstup(), z.getTyp(), z.getVyska(), z.getBarvaPozadi(), z.getBarvaCar(), z.isZobrazitTextPodKodem());
                         }
+                    } catch (IOException e) {
+                        System.out.println("Chyba pri ukladani: " + e.getMessage());
                     }
 
                     System.out.print("Stisknete klavesu Enter pro pokracovani: ");
