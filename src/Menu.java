@@ -10,7 +10,10 @@ public class Menu {
     private Historie historie = new Historie();
 
     public void spustit() {
-        System.out.println("\nVitejte v generatoru carovych kodu! Program umi generovat dva typy carovych kodu: code39 a code128. ");
+        System.out.println("----------------------------------------\n" +
+                "Vitejte v Generatoru carovych kodu!\n" +
+                "Tento nastroj podporuje typy Code39 a Code128.\n" +
+                "----------------------------------------");
         while (true) {
             zobrazitHlavniMenu();
             String volba = scanner.nextLine();
@@ -26,7 +29,10 @@ public class Menu {
                     new Historie().spustit();
                     break;
                 case "4":
-                    System.out.println("Konec programu.");
+                    System.out.println("----------------------------------------\n" +
+                            "Dekuji, ze jste pouzili Generator carovych kodu.\n" +
+                            "Preji hezky den a mnoho uspesnych skenu!\n" +
+                            "----------------------------------------");
                     System.exit(0);
                     break;
                 default:
@@ -73,9 +79,18 @@ public class Menu {
     }
 
     private void generaceCode39() {
-        System.out.print("Zadejte text pro Code39: ");
-        String vstup = scanner.nextLine();
+
         Code39 kod = new Code39();
+        String vstup;
+        while (true) {
+            System.out.print("Zadejte text pro Code39: ");
+            vstup = scanner.nextLine();
+            if (kod.jePlatnyVstupCode39(vstup)) {
+                break;
+            } else {
+                System.out.println("Neplatny vstup! Code39 podporuje pouze velka pismena (A-Z), cislice (0-9), znaky: - . $ / + % a mezeru. Zadejte text znovu.");
+            }
+        }
 
         while (true) {
             System.out.println("\n--- Code39 ---");
@@ -133,9 +148,18 @@ public class Menu {
     }
 
     private void generaceCode128() {
-        System.out.print("Zadejte text pro Code128: ");
-        String vstup = scanner.nextLine();
+
         Code128 kod = new Code128();
+        String vstup;
+        while (true) {
+            System.out.print("Zadejte text pro Code128: ");
+            vstup = scanner.nextLine();
+            if (kod.jePlatnyVstupCode128(vstup)) {
+                break;
+            } else {
+                System.out.println("Neplatny vstup! Code128 podporuje znaky ASCII (0-127). Zadejte text znovu.");
+            }
+        }
 
         while (true) {
             System.out.println("\n--- Code128 ---");

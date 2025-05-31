@@ -4,14 +4,13 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="b970309f-30ae-458b-bc0b-d26f3d1d02de" name="Changes" comment=" &#10;  - Vylepseni trid ParametryKodu a CarovyKod (ted uz funguji parametry pri generovani carovych kodu)">
-      <change afterPath="$PROJECT_DIR$/Soubory/historie.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Historie.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Zaznam.java" afterDir="false" />
+    <list default="true" id="b970309f-30ae-458b-bc0b-d26f3d1d02de" name="Changes" comment=" &#10;  - Pridani kompletni historie:&#10;       - Vytvoreni tridy Historie (metody: Historie(), spustit(), zobrazitCelouHistorii(), tridit(), filtrovatAProvest(), smazatKonkretni(), generovatZHistorie(), getColorBarvy(), pridatZaznam(), nacistZeSouboru(), ulozitDoSouboru(), zobrazitZaznamy(), smazatCelouHistorii(), smazatFiltrovane(), vytvoritFiltrCode39(), vytvoritFiltrCode128(), vytvoritFiltrDnesni(), vytvoritFiltr24Hodin(), vytvoritFiltr7Dni(), vytvoritFiltrMesic(), ulozitObrazek())&#10;       - Pridani textoveho souboru historie.txt&#10;       - Pridani ukladani kodu ve tride Menu&#10;       - Pridani ukladani kodu ve tride ParametryKodu&#10;       - Vytvoreni tridy Zaznam pro popis carovych kodu (promenne) pro ukladani do souboru.">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Soubory/historie.txt" beforeDir="false" afterPath="$PROJECT_DIR$/Soubory/historie.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/code39.png" beforeDir="false" afterPath="$PROJECT_DIR$/code39.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Code128.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Code128.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Code39.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Code39.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Menu.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Menu.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ParametryKodu.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ParametryKodu.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -93,7 +92,7 @@
       <workItem from="1748469161652" duration="741000" />
       <workItem from="1748526355102" duration="8751000" />
       <workItem from="1748610666024" duration="2680000" />
-      <workItem from="1748631907332" duration="55540000" />
+      <workItem from="1748631907332" duration="60677000" />
     </task>
     <task id="LOCAL-00001" summary=" - Vytvoreni a napsani abstraktni tridy CarovyKod (hlavicka metody zakoduj a spolecna metoda vytvorObrazek) jako zaklad pro druhy kodu.&#10;&#10; - Vytvoreni a cele napsani tridy Code39 (HashMapa a metoda zakoduj)">
       <option name="closed" value="true" />
@@ -143,7 +142,15 @@
       <option name="project" value="LOCAL" />
       <updated>1748678248484</updated>
     </task>
-    <option name="localTasksCounter" value="7" />
+    <task id="LOCAL-00007" summary=" &#10;  - Pridani kompletni historie:&#10;       - Vytvoreni tridy Historie (metody: Historie(), spustit(), zobrazitCelouHistorii(), tridit(), filtrovatAProvest(), smazatKonkretni(), generovatZHistorie(), getColorBarvy(), pridatZaznam(), nacistZeSouboru(), ulozitDoSouboru(), zobrazitZaznamy(), smazatCelouHistorii(), smazatFiltrovane(), vytvoritFiltrCode39(), vytvoritFiltrCode128(), vytvoritFiltrDnesni(), vytvoritFiltr24Hodin(), vytvoritFiltr7Dni(), vytvoritFiltrMesic(), ulozitObrazek())&#10;       - Pridani textoveho souboru historie.txt&#10;       - Pridani ukladani kodu ve tride Menu&#10;       - Pridani ukladani kodu ve tride ParametryKodu&#10;       - Vytvoreni tridy Zaznam pro popis carovych kodu (promenne) pro ukladani do souboru.">
+      <option name="closed" value="true" />
+      <created>1748709643045</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1748709643045</updated>
+    </task>
+    <option name="localTasksCounter" value="8" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -156,6 +163,7 @@
     <MESSAGE value=" - Vytvoreni tridy Menu a metod: spustit(), zobrazitHlavniMenu(), generaceKodu(), generaceCode39(), generaceCode128(), zobrazitInformace(), ulozitObrazek. &#10; &#10; - Vytvireni tridy ParametryKodu.&#10; &#10; - Vytvoreni Enum tridy TypKodu." />
     <MESSAGE value=" &#10;  - Pridani do tridy ParametryKodu metod: nastavitParametry, vybratBarvu, getNazevBarvy, getColorBarvy, ulozitObrazek, nastavitZobrazeniTextu, getZobrazeniTextu a nastavitVysku.&#10; &#10; - Vytvoreni Enum tridy Barva." />
     <MESSAGE value=" &#10;  - Vylepseni trid ParametryKodu a CarovyKod (ted uz funguji parametry pri generovani carovych kodu)" />
-    <option name="LAST_COMMIT_MESSAGE" value=" &#10;  - Vylepseni trid ParametryKodu a CarovyKod (ted uz funguji parametry pri generovani carovych kodu)" />
+    <MESSAGE value=" &#10;  - Pridani kompletni historie:&#10;       - Vytvoreni tridy Historie (metody: Historie(), spustit(), zobrazitCelouHistorii(), tridit(), filtrovatAProvest(), smazatKonkretni(), generovatZHistorie(), getColorBarvy(), pridatZaznam(), nacistZeSouboru(), ulozitDoSouboru(), zobrazitZaznamy(), smazatCelouHistorii(), smazatFiltrovane(), vytvoritFiltrCode39(), vytvoritFiltrCode128(), vytvoritFiltrDnesni(), vytvoritFiltr24Hodin(), vytvoritFiltr7Dni(), vytvoritFiltrMesic(), ulozitObrazek())&#10;       - Pridani textoveho souboru historie.txt&#10;       - Pridani ukladani kodu ve tride Menu&#10;       - Pridani ukladani kodu ve tride ParametryKodu&#10;       - Vytvoreni tridy Zaznam pro popis carovych kodu (promenne) pro ukladani do souboru." />
+    <option name="LAST_COMMIT_MESSAGE" value=" &#10;  - Pridani kompletni historie:&#10;       - Vytvoreni tridy Historie (metody: Historie(), spustit(), zobrazitCelouHistorii(), tridit(), filtrovatAProvest(), smazatKonkretni(), generovatZHistorie(), getColorBarvy(), pridatZaznam(), nacistZeSouboru(), ulozitDoSouboru(), zobrazitZaznamy(), smazatCelouHistorii(), smazatFiltrovane(), vytvoritFiltrCode39(), vytvoritFiltrCode128(), vytvoritFiltrDnesni(), vytvoritFiltr24Hodin(), vytvoritFiltr7Dni(), vytvoritFiltrMesic(), ulozitObrazek())&#10;       - Pridani textoveho souboru historie.txt&#10;       - Pridani ukladani kodu ve tride Menu&#10;       - Pridani ukladani kodu ve tride ParametryKodu&#10;       - Vytvoreni tridy Zaznam pro popis carovych kodu (promenne) pro ukladani do souboru." />
   </component>
 </project>

@@ -48,4 +48,19 @@ public class Code39 extends CarovyKod {
         }
         return zakodovano.toString();
     }
+
+    public boolean jePlatnyVstupCode39(String vstup) {
+        if (vstup == null || vstup.isEmpty()) {
+            return false;
+        }
+        inicializujMapu();
+        vstup = vstup.toUpperCase();
+        for (char c : vstup.toCharArray()) {
+            if (!MAPA_CODE39.containsKey(c)) {
+                return false;
+            }
+        }
+        return true;
+    }
+
 }

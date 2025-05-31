@@ -110,4 +110,17 @@ public class Code128 extends CarovyKod {
 
         return vzor.toString();
     }
+
+    public boolean jePlatnyVstupCode128(String vstup) {
+        if (vstup == null || vstup.isEmpty()) {
+            return false;
+        }
+        for (char c : vstup.toCharArray()) {
+            if (c < 0 || c > 127) {
+                return false;
+            }
+        }
+        return true;
+    }
+
 }
