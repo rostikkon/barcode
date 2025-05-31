@@ -29,7 +29,12 @@ public class ParametryKodu {
             System.out.println("6. Vygenerovat a ulozit kod");
             System.out.println("7. Zpatky");
             System.out.print("Zadejte volbu: ");
-            String volba = scanner.nextLine();
+
+            String volba = scanner.nextLine().trim();
+            if (!volba.matches("[1-7]")) {
+                System.out.println("Neplatna volba, zadejte cislo 1-7.");
+                continue;
+            }
 
             switch (volba) {
                 case "1":
@@ -61,13 +66,12 @@ public class ParametryKodu {
                 case "7":
                     posledniGenerovanyZaznam = null;
                     return;
-                default:
-                    System.out.println("Neplatna volba, zkuste to znovu.");
             }
         }
     }
 
     private Barva vybratBarvu(String typBarvy) {
+        while (true) {
         System.out.println("\n--- Vyber barvy pro " + typBarvy + " ---");
         System.out.println("1. Bila");
         System.out.println("2. Cerna");
@@ -84,7 +88,12 @@ public class ParametryKodu {
         System.out.println("13. Tmave seda");
         System.out.println("14. Zpatky");
         System.out.print("Zadejte volbu: ");
-        String volba = scanner.nextLine();
+
+        String volba = scanner.nextLine().trim();
+        if (!volba.matches("[1-9]|1[0-4]")) {
+            System.out.println("Neplatna volba, zadejte cislo 1-14.");
+            continue;
+        }
 
         switch (volba) {
             case "1":
@@ -115,9 +124,7 @@ public class ParametryKodu {
                 return Barva.TMAVE_SEDA;
             case "14":
                 return null;
-            default:
-                System.out.println("Neplatna volba, zkuste to znovu.");
-                return vybratBarvu(typBarvy);
+        }
         }
     }
 
@@ -160,13 +167,19 @@ public class ParametryKodu {
     }
 
     private boolean nastavitZobrazeniTextu(boolean aktualniZobrazeni) {
+        while (true) {
         System.out.println("\n--- Nastaveni zobrazeni textu pod kodem ---");
         System.out.println("Aktualni stav: " + getZobrazeniTextu(aktualniZobrazeni));
         System.out.println("1. Zobrazit text");
         System.out.println("2. Skryt text");
         System.out.println("3. Zpatky (bez zmen)");
         System.out.print("Zadejte volbu: ");
-        String volba = scanner.nextLine();
+
+        String volba = scanner.nextLine().trim();
+        if (!volba.matches("[1-3]")) {
+            System.out.println("Neplatna volba, zadejte cislo 1-3.");
+            continue;
+        }
 
         switch (volba) {
             case "1":
@@ -175,9 +188,8 @@ public class ParametryKodu {
                 return false;
             case "3":
                 return aktualniZobrazeni;
-            default:
-                System.out.println("Neplatna volba, zkuste to znovu.");
-                return nastavitZobrazeniTextu(aktualniZobrazeni);
+
+        }
         }
     }
 

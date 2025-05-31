@@ -31,7 +31,12 @@ public class Historie {
             System.out.println("2. Tridit historii");
             System.out.println("3. Zpatky");
             System.out.print("Zadejte volbu: ");
-            String volba = scanner.nextLine();
+
+            String volba = scanner.nextLine().trim();
+            if (!volba.matches("[1-3]")) {
+                System.out.println("Neplatna volba, zadejte cislo 1-3.");
+                continue;
+            }
 
             switch (volba) {
                 case "1":
@@ -42,8 +47,6 @@ public class Historie {
                     break;
                 case "3":
                     return;
-                default:
-                    System.out.println("Neplatna volba, zkuste to znovu.");
             }
         }
     }
@@ -52,12 +55,17 @@ public class Historie {
         while (true) {
             System.out.println("\n--- Cela historie ---");
             zobrazitZaznamy(zaznamy);
-            System.out.println("1. Smazat konkretni");
+            System.out.println("\n1. Smazat konkretni");
             System.out.println("2. Smazat celou historii");
             System.out.println("3. Generovat z historie");
             System.out.println("4. Zpatky");
             System.out.print("Zadejte volbu: ");
-            String volba = scanner.nextLine();
+
+            String volba = scanner.nextLine().trim();
+            if (!volba.matches("[1-4]")) {
+                System.out.println("Neplatna volba, zadejte cislo 1-4:");
+                continue;
+            }
 
             switch (volba) {
                 case "1":
@@ -71,8 +79,6 @@ public class Historie {
                     break;
                 case "4":
                     return;
-                default:
-                    System.out.println("Neplatna volba, zkuste to znovu.");
             }
         }
     }
@@ -88,7 +94,12 @@ public class Historie {
             System.out.println("6. Posledni mesic");
             System.out.println("7. Zpatky");
             System.out.print("Zadejte volbu: ");
-            String volba = scanner.nextLine();
+
+            String volba = scanner.nextLine().trim();
+            if (!volba.matches("[1-7]")) {
+                System.out.println("Neplatna volba, zadejte cislo 1-7.");
+                continue;
+            }
 
             switch (volba) {
                 case "1":
@@ -111,8 +122,6 @@ public class Historie {
                     break;
                 case "7":
                     return;
-                default:
-                    System.out.println("Neplatna volba, zkuste to znovu.");
             }
         }
     }
@@ -133,7 +142,12 @@ public class Historie {
             System.out.println("3. Generovat z historie");
             System.out.println("4. Zpatky");
             System.out.print("Zadejte volbu: ");
-            String volba = scanner.nextLine();
+
+            String volba = scanner.nextLine().trim();
+            if (!volba.matches("[1-4]")) {
+                System.out.println("Neplatna volba, zadejte cislo 1-4.");
+                continue;
+            }
 
             switch (volba) {
                 case "1":
@@ -147,8 +161,6 @@ public class Historie {
                     break;
                 case "4":
                     return;
-                default:
-                    System.out.println("Neplatna volba, zkuste to znovu.");
             }
         }
     }
@@ -163,39 +175,39 @@ public class Historie {
             }
 
             System.out.print("\nZadejte cislo zaznamu k smazani (1-" + seznam.size() + ") nebo 'zpatky' pro navrat: ");
-            String vstup = scanner.nextLine();
+            String vstup = scanner.nextLine().trim();
+            if (vstup.equalsIgnoreCase("zpatky")) {
+                return;
+            }
+            try {
+                int index = Integer.parseInt(vstup) - 1;
+                if (index >= 0 && index < seznam.size()) {
+                    Zaznam smazany = seznam.remove(index);
+                    zaznamy.remove(smazany);
+                    ulozitDoSouboru();
+                    System.out.println("Zaznam smazan: " + smazany.getVstup());
 
-            switch (vstup.toLowerCase()) {
-                case "zpatky":
-                    return;
-                default:
-                    try {
-                        int index = Integer.parseInt(vstup) - 1;
-                        if (index >= 0 && index < seznam.size()) {
-                            Zaznam smazany = seznam.remove(index);
-                            zaznamy.remove(smazany);
-                            ulozitDoSouboru();
-                            System.out.println("Zaznam smazan: " + smazany.getVstup());
-
-                            System.out.print("Chcete smazat dalsi? (ano/ne): ");
-                            String pokracovat = scanner.nextLine();
-                            switch (pokracovat.toLowerCase()) {
-                                case "ano":
-                                    break;
-                                case "ne":
-                                    return;
-                                default:
-                                    System.out.println("Neplatna volba, zkuste to znovu.");
-                            }
-                        } else {
-                            System.out.println("Neplatne cislo zaznamu.");
-                        }
-                    } catch (NumberFormatException e) {
-                        System.out.println("Neplatny vstup, zadejte cislo nebo 'zpatky'.");
+                    System.out.println("Chcete smazat dalsi?");
+                    System.out.println("1. Ano");
+                    System.out.println("2. Ne");
+                    System.out.print("Zadejte volbu: ");
+                    String pokracovat = scanner.nextLine().trim();
+                    if (!pokracovat.matches("[1-2]")) {
+                        System.out.println("Neplatna volba, zadejte 1 nebo 2.");
+                        continue;
                     }
+                    if (pokracovat.equals("2")) {
+                        return;
+                    }
+                } else {
+                    System.out.println("Neplatne cislo zaznamu.");
+                }
+            } catch (NumberFormatException e) {
+                        System.out.println("Neplatny vstup, zadejte cislo nebo 'zpatky'.");
             }
         }
     }
+
 
     private void generovatZHistorie(ArrayList<Zaznam> seznam) {
         if (seznam.isEmpty()) {
@@ -205,36 +217,56 @@ public class Historie {
             return;
         }
 
-        System.out.print("\nZadejte cislo zaznamu k generovani (1-" + seznam.size() + ") nebo 'zpatky' pro navrat: ");
-        String vstup = scanner.nextLine();
-
-        switch (vstup.toLowerCase()) {
-            case "zpatky":
+        while (true) {
+            System.out.print("\nZadejte cislo zaznamu k generovani (1-" + seznam.size() + ") nebo 'zpatky' pro navrat: ");
+            String vstup = scanner.nextLine().trim();
+            if (vstup.equalsIgnoreCase("zpatky")) {
                 return;
-            default:
-                try {
-                    int index = Integer.parseInt(vstup) - 1;
-                    if (index >= 0 && index < seznam.size()) {
-                        Zaznam z = seznam.get(index);
-                        CarovyKod kod;
-                        switch (z.getTyp()) {
-                            case CODE39:
-                                kod = new Code39();
-                                break;
-                            case CODE128:
-                                kod = new Code128();
-                                break;
-                            default:
-                                throw new IllegalStateException("Neznamy typ kodu: " + z.getTyp());
-                        }
+            }
+            try {
+                int index = Integer.parseInt(vstup) - 1;
+                if (index >= 0 && index < seznam.size()) {
+                    Zaznam z = seznam.get(index);
+                    CarovyKod kod;
+                    switch (z.getTyp()) {
+                        case CODE39:
+                            kod = new Code39();
+                            break;
+                        case CODE128:
+                            kod = new Code128();
+                            break;
+                        default:
+                            throw new IllegalStateException("Neznamy typ kodu: " + z.getTyp());
+                    }
 
-                        String soubor;
-                        if (z.getTyp() == TypKodu.CODE39) {
-                            soubor = "code39.png";
-                        } else {
-                            soubor = "code128.png";
-                        }
+                    String soubor;
+                    if (z.getTyp() == TypKodu.CODE39) {
+                        soubor = "code39.png";
+                    } else {
+                        soubor = "code128.png";
+                    }
 
+                    try {
+                        String cesta = ulozitObrazek(kod, z.getVstup(), z.getVyska(), z.getBarvaPozadi(), z.getBarvaCar(), z.isZobrazitTextPodKodem());
+                        if (cesta != null) {
+                            System.out.println("\nCesta k souboru: " + cesta);
+                            System.out.println("== " + z.getTyp() + " vygenerovan a ulozen! ==");
+                            pridatZaznam(z.getVstup(), z.getTyp(), z.getVyska(), z.getBarvaPozadi(), z.getBarvaCar(), z.isZobrazitTextPodKodem());
+                        }
+                    } catch (IOException e) {
+                        System.out.println("Chyba pri ukladani: " + e.getMessage());
+                    }
+
+                    System.out.println("Chcete ulozit kod?");
+                    System.out.println("1. Ano");
+                    System.out.println("2. Ne");
+                    System.out.print("Zadejte volbu: ");
+                    String ulozit = scanner.nextLine().trim();
+                    if (!ulozit.matches("[1-2]")) {
+                        System.out.println("Neplatna volba, zadejte 1 nebo 2.");
+                        continue;
+                    }
+                    if (ulozit.equals("1")) {
                         try {
                             String cesta = ulozitObrazek(kod, z.getVstup(), z.getVyska(), z.getBarvaPozadi(), z.getBarvaCar(), z.isZobrazitTextPodKodem());
                             if (cesta != null) {
@@ -245,36 +277,20 @@ public class Historie {
                         } catch (IOException e) {
                             System.out.println("Chyba pri ukladani: " + e.getMessage());
                         }
-
-                        System.out.print("Chcete ulozit kod? (ano/ne): ");
-                        String ulozit = scanner.nextLine();
-                        switch (ulozit.toLowerCase()) {
-                            case "ano":
-                                try {
-                                    String cesta = ulozitObrazek(kod, z.getVstup(), z.getVyska(), z.getBarvaPozadi(), z.getBarvaCar(), z.isZobrazitTextPodKodem());
-                                    if (cesta != null) {
-                                        System.out.println("\nCesta k souboru: " + cesta);
-                                        System.out.println("== " + z.getTyp() + " vygenerovan a ulozen! ==");
-                                        pridatZaznam(z.getVstup(), z.getTyp(), z.getVyska(), z.getBarvaPozadi(), z.getBarvaCar(), z.isZobrazitTextPodKodem());
-                                    }
-                                } catch (IOException e) {
-                                    System.out.println("Chyba pri ukladani: " + e.getMessage());
-                                }
-                                break;
-                            default:
-                                break;
-                        }
-
-                        System.out.print("Stisknete klavesu Enter pro pokracovani: ");
-                        scanner.nextLine();
-                    } else {
-                        System.out.println("Neplatne cislo zaznamu.");
                     }
-                } catch (NumberFormatException e) {
-                    System.out.println("Neplatny vstup, zadejte cislo nebo 'zpatky'.");
+
+                    System.out.print("Stisknete klavesu Enter pro pokracovani: ");
+                    scanner.nextLine();
+                    return;
+                } else {
+                    System.out.println("Neplatne cislo zaznamu.");
                 }
+            } catch (NumberFormatException e) {
+                System.out.println("Neplatny vstup, zadejte cislo nebo 'zpatky'.");
+            }
         }
     }
+
 
     private Color getColorBarvy(Barva barva) {
         switch (barva) {

@@ -15,8 +15,14 @@ public class Menu {
                 "Tento nastroj podporuje typy Code39 a Code128.\n" +
                 "----------------------------------------");
         while (true) {
+
             zobrazitHlavniMenu();
-            String volba = scanner.nextLine();
+
+            String volba = scanner.nextLine().trim();
+            if (!volba.matches("[1-4]")) {
+                System.out.println("Neplatna volba, zadejte cislo 1-4.");
+                continue;
+            }
 
             switch (volba) {
                 case "1":
@@ -35,8 +41,6 @@ public class Menu {
                             "----------------------------------------");
                     System.exit(0);
                     break;
-                default:
-                    System.out.println("Neplatna volba, zkuste to znovu.");
             }
         }
     }
@@ -58,7 +62,12 @@ public class Menu {
             System.out.println("3. Informace o typech kodu (co podporuji)");
             System.out.println("4. Zpatky");
             System.out.print("Zadejte volbu: ");
-            String volba = scanner.nextLine();
+
+            String volba = scanner.nextLine().trim();
+            if (!volba.matches("[1-4]")) {
+                System.out.println("Neplatna volba, zadejte cislo 1-4.");
+                continue;
+            }
 
             switch (volba) {
                 case "1":
@@ -72,8 +81,6 @@ public class Menu {
                     break;
                 case "4":
                     return;
-                default:
-                    System.out.println("Neplatna volba, zkuste to znovu.");
             }
         }
     }
@@ -99,7 +106,12 @@ public class Menu {
             System.out.println("3. Vybrat parametry kodu");
             System.out.println("4. Zpatky");
             System.out.print("Zadejte volbu: ");
-            String volba = scanner.nextLine();
+
+            String volba = scanner.nextLine().trim();
+            if (!volba.matches("[1-4]")) {
+                System.out.println("Neplatna volba, zadejte cislo 1-4.");
+                continue;
+            }
 
             switch (volba) {
                 case "1":
@@ -141,8 +153,6 @@ public class Menu {
                     return;
                 case "4":
                     return;
-                default:
-                    System.out.println("Neplatna volba, zkuste to znovu.");
             }
         }
     }
@@ -168,7 +178,12 @@ public class Menu {
             System.out.println("3. Vybrat parametry kodu");
             System.out.println("4. Zpatky");
             System.out.print("Zadejte volbu: ");
-            String volba = scanner.nextLine();
+
+            String volba = scanner.nextLine().trim();
+            if (!volba.matches("[1-4]")) {
+                System.out.println("Neplatna volba, zadejte cislo 1-4.");
+                continue;
+            }
 
             switch (volba) {
                 case "1":
@@ -210,8 +225,6 @@ public class Menu {
                     return;
                 case "4":
                     return;
-                default:
-                    System.out.println("Neplatna volba, zkuste to znovu.");
             }
         }
     }
