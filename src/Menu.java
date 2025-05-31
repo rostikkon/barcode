@@ -6,7 +6,7 @@ import java.util.Scanner;
 
 public class Menu {
 
-    private static Scanner scanner = new Scanner(System.in);
+    private Scanner scanner = new Scanner(System.in);
 
     public void spustit() {
         System.out.println("\nVitejte v generatoru carovych kodu! Program umi generovat dva typy carovych kodu: code39 a code128. ");
@@ -110,7 +110,7 @@ public class Menu {
                 case "3":
                     ParametryKodu parametryKodu = new ParametryKodu();
                     parametryKodu.nastavitParametry(kod, vstup, TypKodu.CODE39);
-                    break;
+                    return;
                 case "4":
                     return;
                 default:
@@ -158,7 +158,7 @@ public class Menu {
                 case "3":
                     ParametryKodu parametryKodu = new ParametryKodu();
                     parametryKodu.nastavitParametry(kod, vstup, TypKodu.CODE128);
-                    break;
+                    return;
                 case "4":
                     return;
                 default:
@@ -167,7 +167,7 @@ public class Menu {
         }
     }
 
-    private static void zobrazitInformace() {
+    private void zobrazitInformace() {
         System.out.println("\n--- INFORMACE O KODECH ---");
 
         System.out.println("\nCode39:");
