@@ -4,11 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="b970309f-30ae-458b-bc0b-d26f3d1d02de" name="Changes" comment=" - Vytvoreni tridy Menu a metod: spustit(), zobrazitHlavniMenu(), generaceKodu(), generaceCode39(), generaceCode128(), zobrazitInformace(), ulozitObrazek. &#10; &#10; - Vytvireni tridy ParametryKodu.&#10; &#10; - Vytvoreni Enum tridy TypKodu.">
-      <change afterPath="$PROJECT_DIR$/src/Barva.java" afterDir="false" />
+    <list default="true" id="b970309f-30ae-458b-bc0b-d26f3d1d02de" name="Changes" comment=" &#10;  - Pridani do tridy ParametryKodu metod: nastavitParametry, vybratBarvu, getNazevBarvy, getColorBarvy, ulozitObrazek, nastavitZobrazeniTextu, getZobrazeniTextu a nastavitVysku.&#10; &#10; - Vytvoreni Enum tridy Barva.">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/code39.png" beforeDir="false" afterPath="$PROJECT_DIR$/code39.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Menu.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Menu.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/CarovyKod.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/CarovyKod.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/ParametryKodu.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ParametryKodu.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -91,7 +90,7 @@
       <workItem from="1748469161652" duration="741000" />
       <workItem from="1748526355102" duration="8751000" />
       <workItem from="1748610666024" duration="2680000" />
-      <workItem from="1748631907332" duration="31788000" />
+      <workItem from="1748631907332" duration="35908000" />
     </task>
     <task id="LOCAL-00001" summary=" - Vytvoreni a napsani abstraktni tridy CarovyKod (hlavicka metody zakoduj a spolecna metoda vytvorObrazek) jako zaklad pro druhy kodu.&#10;&#10; - Vytvoreni a cele napsani tridy Code39 (HashMapa a metoda zakoduj)">
       <option name="closed" value="true" />
@@ -125,7 +124,15 @@
       <option name="project" value="LOCAL" />
       <updated>1748657814169</updated>
     </task>
-    <option name="localTasksCounter" value="5" />
+    <task id="LOCAL-00005" summary=" &#10;  - Pridani do tridy ParametryKodu metod: nastavitParametry, vybratBarvu, getNazevBarvy, getColorBarvy, ulozitObrazek, nastavitZobrazeniTextu, getZobrazeniTextu a nastavitVysku.&#10; &#10; - Vytvoreni Enum tridy Barva.">
+      <option name="closed" value="true" />
+      <created>1748674018515</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1748674018515</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -136,14 +143,15 @@
     <MESSAGE value=" - Vytvoreni a cele napsani tridy Code128 (HashMapa a metoda zakoduj)" />
     <MESSAGE value=" - Zmena ve tridach Code39 a Code128 (dodani metod pro nacitani hodnot do hashmapy ze souboru)&#10; &#10; - Pridani souboru se vzorky pro sifrovani" />
     <MESSAGE value=" - Vytvoreni tridy Menu a metod: spustit(), zobrazitHlavniMenu(), generaceKodu(), generaceCode39(), generaceCode128(), zobrazitInformace(), ulozitObrazek. &#10; &#10; - Vytvireni tridy ParametryKodu.&#10; &#10; - Vytvoreni Enum tridy TypKodu." />
-    <option name="LAST_COMMIT_MESSAGE" value=" - Vytvoreni tridy Menu a metod: spustit(), zobrazitHlavniMenu(), generaceKodu(), generaceCode39(), generaceCode128(), zobrazitInformace(), ulozitObrazek. &#10; &#10; - Vytvireni tridy ParametryKodu.&#10; &#10; - Vytvoreni Enum tridy TypKodu." />
+    <MESSAGE value=" &#10;  - Pridani do tridy ParametryKodu metod: nastavitParametry, vybratBarvu, getNazevBarvy, getColorBarvy, ulozitObrazek, nastavitZobrazeniTextu, getZobrazeniTextu a nastavitVysku.&#10; &#10; - Vytvoreni Enum tridy Barva." />
+    <option name="LAST_COMMIT_MESSAGE" value=" &#10;  - Pridani do tridy ParametryKodu metod: nastavitParametry, vybratBarvu, getNazevBarvy, getColorBarvy, ulozitObrazek, nastavitZobrazeniTextu, getZobrazeniTextu a nastavitVysku.&#10; &#10; - Vytvoreni Enum tridy Barva." />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
       <breakpoints>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/Menu.java</url>
-          <line>24</line>
+          <line>23</line>
           <option name="timeStamp" value="2" />
         </line-breakpoint>
       </breakpoints>

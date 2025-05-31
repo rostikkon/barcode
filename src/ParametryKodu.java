@@ -9,8 +9,7 @@ public class ParametryKodu {
     private static Scanner scanner = new Scanner(System.in);
 
     public void nastavitParametry(CarovyKod kod, String vstup, TypKodu typ) {
-        int vyska = 100;
-        int sirka = 300;
+        int vyska = 80;
         Barva barvaPozadi = Barva.BILA;
         Barva barvaCar = Barva.CERNA;
         boolean zobrazitTextPodKodem = false;
@@ -47,27 +46,10 @@ public class ParametryKodu {
                     vyska = nastavitVysku();
                     break;
                 case "5":
-                    try {
-                        String soubor;
-                        if (typ == TypKodu.CODE39) {
-                            soubor = "code39.png";
-                        } else {
-                            soubor = "code128.png";
-                        }
-                        kod.vytvoritObrazek(vstup, soubor);
-                        System.out.println("\n== " + typ + " vygenerovan! ==");
-                    } catch (IOException e) {
-                        System.out.println("Chyba: " + e.getMessage());
-                    }
+                    vygenerovatKod(kod, vstup, typ, vyska, barvaPozadi, barvaCar, zobrazitTextPodKodem);
                     return;
                 case "6":
-                    String cesta = ulozitObrazek(kod, vstup, vyska, sirka, getColorBarvy(barvaPozadi), getColorBarvy(barvaCar), zobrazitTextPodKodem);
-                    if (cesta != null) {
-                        System.out.println("\nCesta k souboru: " + cesta);
-                        System.out.println("== " + typ + " vygenerovan a ulozen! ==");
-                        System.out.print("Stisknete klavesu Enter pro pokracovani");
-                        scanner.nextLine();
-                    }
+                    vygenerovatAUlozitKod(kod, vstup, typ, vyska, barvaPozadi, barvaCar, zobrazitTextPodKodem);
                     return;
                 case "7":
                     return;
@@ -182,10 +164,12 @@ public class ParametryKodu {
 
         if (result == JFileChooser.APPROVE_OPTION) {
             String cesta = fileChooser.getSelectedFile().getAbsolutePath();
-            if (!cesta.endsWith(".png")) cesta += ".png";
+            if (!cesta.endsWith(".png")) {
+                cesta += ".png";
+            }
 
             try {
-                kod.vytvoritObrazek(vstup, cesta);
+                kod.vytvoritObrazek(vstup, cesta, vyska, barvaPozadi, barvaCar, zobrazitTextPodKodem);
                 return cesta;
             } catch (IOException e) {
                 System.out.println("Chyba pri ukladani: " + e.getMessage());
@@ -228,18 +212,66 @@ public class ParametryKodu {
 
     private int nastavitVysku() {
         while (true) {
-            System.out.print("Zadejte vysku (50-200): ");
+            System.out.print("Zadejte vysku (30-150): ");
             String vstup = scanner.nextLine();
             try {
                 int novaVyska = Integer.parseInt(vstup);
-                if (novaVyska >= 50 && novaVyska <= 200) {
+                if (novaVyska >= 30 && novaVyska <= 150) {
                     return novaVyska;
                 } else {
-                    System.out.println("Vyska musi byt v rozmezi 50-200. Zkuste to znovu.");
+                    System.out.println("Vyska musi byt v rozmezi 30-150. Zkuste to znovu.");
                 }
             } catch (NumberFormatException e) {
-                System.out.println("Neplatna hodnota. Zadejte cislo mezi 50 a 200.");
+                System.out.println("Neplatna hodnota. Zadejte cislo mezi 30 a 150.");
             }
+        }
+    }
+
+    private void vygenerovatKod(CarovyKod kod, String vstup, TypKodu typ, int vyska, Barva barvaPozadi, Barva barvaCar, boolean zobrazitTextPodKodem) {
+        try {
+            String soubor;
+            if (typ == TypKodu.CODE39) {
+                soubor = "code39.png";
+            } else {
+                soubor = "code128.png";
+            }
+            kod.vytvoritObrazek(vstup, soubor, vyska, getColorBarvy(barvaPozadi), getColorBarvy(barvaCar), zobrazitTextPodKodem);
+            System.out.println("\n== " + typ + " vygenerovan! ==");
+            System.out.print("Stisknete klavesu Enter pro navrat do hlavniho menu");
+            scanner.nextLine();
+        } catch (IOException e) {
+            System.out.println("Chyba: " + e.getMessage());
+        }
+    }
+
+    private void vygenerovatAUlozitKod(CarovyKod kod, String vstup, TypKodu typ, int vyska, Barva barvaPozadi, Barva barvaCar, boolean zobrazitTextPodKodem) {
+        JFileChooser fileChooser = new JFileChooser(new File("D:\\YouTube Shorts"));
+        fileChooser.setFileFilter(new FileNameExtensionFilter("PNG soubory", "png"));
+        fileChooser.setDialogTitle("Ulozit carovy kod");
+
+        JFrame frame = new JFrame();
+        frame.setAlwaysOnTop(true);
+
+        int result = fileChooser.showSaveDialog(frame);
+        frame.dispose();
+
+        if (result == JFileChooser.APPROVE_OPTION) {
+            String cesta = fileChooser.getSelectedFile().getAbsolutePath();
+            if (!cesta.endsWith(".png")) {
+                cesta += ".png";
+            }
+
+            try {
+                kod.vytvoritObrazek(vstup, cesta, vyska, getColorBarvy(barvaPozadi), getColorBarvy(barvaCar), zobrazitTextPodKodem);
+                System.out.println("\nCesta k souboru: " + cesta);
+                System.out.println("== " + typ + " vygenerovan a ulozen! ==");
+                System.out.print("Stisknete klavesa Enter pro pokracovani");
+                scanner.nextLine();
+            } catch (IOException e) {
+                System.out.println("Chyba pri ukladani: " + e.getMessage());
+            }
+        } else {
+            System.out.println("Ukladani zruseno.");
         }
     }
 
