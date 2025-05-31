@@ -7,6 +7,7 @@ import java.util.Scanner;
 public class Menu {
 
     private Scanner scanner = new Scanner(System.in);
+    private Historie historie = new Historie();
 
     public void spustit() {
         System.out.println("\nVitejte v generatoru carovych kodu! Program umi generovat dva typy carovych kodu: code39 a code128. ");
@@ -22,7 +23,7 @@ public class Menu {
                     zobrazitInformace();
                     break;
                 case "3":
-                    //Historie();
+                    new Historie().spustit();
                     break;
                 case "4":
                     System.out.println("Konec programu.");
@@ -90,6 +91,7 @@ public class Menu {
                     try {
                         kod.vytvoritObrazek(vstup, "code39.png");
                         System.out.println("\n== Code39 vygenerovan! ==");
+                        historie.pridatZaznam(vstup, TypKodu.CODE39, 70, Barva.BILA, Barva.CERNA, false);
                     } catch (IOException e) {
                         System.out.println("Chyba: " + e.getMessage());
                     }
@@ -100,6 +102,7 @@ public class Menu {
                         if (cesta != null) {
                             System.out.println("\nCesta k souboru: " + cesta);
                             System.out.println("== Code39 vygenerovan a ulozen! ==");
+                            historie.pridatZaznam(vstup, TypKodu.CODE39, 70, Barva.BILA, Barva.CERNA, false);
                             System.out.print("Stisknete klavesu Enter pro pokracovani");
                             scanner.nextLine();
                         }
@@ -110,6 +113,16 @@ public class Menu {
                 case "3":
                     ParametryKodu parametryKodu = new ParametryKodu();
                     parametryKodu.nastavitParametry(kod, vstup, TypKodu.CODE39);
+                    if (parametryKodu.getPosledniGenerovanyZaznam() != null) {
+                        historie.pridatZaznam(
+                                parametryKodu.getPosledniGenerovanyZaznam().getVstup(),
+                                TypKodu.CODE39,
+                                parametryKodu.getPosledniGenerovanyZaznam().getVyska(),
+                                parametryKodu.getPosledniGenerovanyZaznam().getBarvaPozadi(),
+                                parametryKodu.getPosledniGenerovanyZaznam().getBarvaCar(),
+                                parametryKodu.getPosledniGenerovanyZaznam().isZobrazitTextPodKodem()
+                        );
+                    }
                     return;
                 case "4":
                     return;
@@ -138,6 +151,7 @@ public class Menu {
                     try {
                         kod.vytvoritObrazek(vstup, "code128.png");
                         System.out.println("\n== Code128 vygenerovan! ==");
+                        historie.pridatZaznam(vstup, TypKodu.CODE128, 70, Barva.BILA, Barva.CERNA, false);
                     } catch (IOException e) {
                         System.out.println("Chyba: " + e.getMessage());
                     }
@@ -148,6 +162,7 @@ public class Menu {
                         if (cesta != null) {
                             System.out.println("\nCesta k souboru: " + cesta);
                             System.out.println("== Code128 vygenerovan a ulozen! ==");
+                            historie.pridatZaznam(vstup, TypKodu.CODE128, 70, Barva.BILA, Barva.CERNA, false);
                             System.out.print("Stisknete klavesu Enter pro pokracovani");
                             scanner.nextLine();
                         }
@@ -158,6 +173,16 @@ public class Menu {
                 case "3":
                     ParametryKodu parametryKodu = new ParametryKodu();
                     parametryKodu.nastavitParametry(kod, vstup, TypKodu.CODE128);
+                    if (parametryKodu.getPosledniGenerovanyZaznam() != null) {
+                        historie.pridatZaznam(
+                                parametryKodu.getPosledniGenerovanyZaznam().getVstup(),
+                                TypKodu.CODE128,
+                                parametryKodu.getPosledniGenerovanyZaznam().getVyska(),
+                                parametryKodu.getPosledniGenerovanyZaznam().getBarvaPozadi(),
+                                parametryKodu.getPosledniGenerovanyZaznam().getBarvaCar(),
+                                parametryKodu.getPosledniGenerovanyZaznam().isZobrazitTextPodKodem()
+                        );
+                    }
                     return;
                 case "4":
                     return;

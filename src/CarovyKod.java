@@ -52,7 +52,7 @@ public abstract class CarovyKod {
     }
 
     public void vytvoritObrazek(String data, String cestaKSouboru) throws IOException {
-        vytvoritObrazek(data, cestaKSouboru, 80, Color.WHITE, Color.BLACK, false);
+        vytvoritObrazek(data, cestaKSouboru, 70, Color.WHITE, Color.BLACK, false);
     }
 
 }

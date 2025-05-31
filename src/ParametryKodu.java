@@ -7,6 +7,11 @@ import java.awt.Color;
 
 public class ParametryKodu {
     private static Scanner scanner = new Scanner(System.in);
+    private Zaznam posledniGenerovanyZaznam;
+
+    public Zaznam getPosledniGenerovanyZaznam() {
+        return posledniGenerovanyZaznam;
+    }
 
     public void nastavitParametry(CarovyKod kod, String vstup, TypKodu typ) {
         int vyska = 80;
@@ -47,11 +52,14 @@ public class ParametryKodu {
                     break;
                 case "5":
                     vygenerovatKod(kod, vstup, typ, vyska, barvaPozadi, barvaCar, zobrazitTextPodKodem);
+                    posledniGenerovanyZaznam = new Zaznam(vstup, typ, null, vyska, barvaPozadi, barvaCar, zobrazitTextPodKodem);
                     return;
                 case "6":
                     vygenerovatAUlozitKod(kod, vstup, typ, vyska, barvaPozadi, barvaCar, zobrazitTextPodKodem);
+                    posledniGenerovanyZaznam = new Zaznam(vstup, typ, null, vyska, barvaPozadi, barvaCar, zobrazitTextPodKodem);
                     return;
                 case "7":
+                    posledniGenerovanyZaznam = null;
                     return;
                 default:
                     System.out.println("Neplatna volba, zkuste to znovu.");
@@ -151,35 +159,6 @@ public class ParametryKodu {
         }
     }
 
-    private String ulozitObrazek(CarovyKod kod, String vstup, int vyska, int sirka, Color barvaPozadi, Color barvaCar, boolean zobrazitTextPodKodem) {
-        JFileChooser fileChooser = new JFileChooser(new File("D:\\YouTube Shorts"));
-        fileChooser.setFileFilter(new FileNameExtensionFilter("PNG soubory", "png"));
-        fileChooser.setDialogTitle("Ulozit carovy kod");
-
-        JFrame frame = new JFrame();
-        frame.setAlwaysOnTop(true);
-
-        int result = fileChooser.showSaveDialog(frame);
-        frame.dispose();
-
-        if (result == JFileChooser.APPROVE_OPTION) {
-            String cesta = fileChooser.getSelectedFile().getAbsolutePath();
-            if (!cesta.endsWith(".png")) {
-                cesta += ".png";
-            }
-
-            try {
-                kod.vytvoritObrazek(vstup, cesta, vyska, barvaPozadi, barvaCar, zobrazitTextPodKodem);
-                return cesta;
-            } catch (IOException e) {
-                System.out.println("Chyba pri ukladani: " + e.getMessage());
-            }
-        } else {
-            System.out.println("Ukladani zruseno.");
-        }
-        return null;
-    }
-
     private boolean nastavitZobrazeniTextu(boolean aktualniZobrazeni) {
         System.out.println("\n--- Nastaveni zobrazeni textu pod kodem ---");
         System.out.println("Aktualni stav: " + getZobrazeniTextu(aktualniZobrazeni));
@@ -274,5 +253,4 @@ public class ParametryKodu {
             System.out.println("Ukladani zruseno.");
         }
     }
-
 }
