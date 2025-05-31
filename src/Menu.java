@@ -254,7 +254,7 @@ public class Menu {
     }
 
     private String ulozitObrazek(CarovyKod kod, String vstup) {
-        JFileChooser fileChooser = new JFileChooser(new File("D:\\YouTube Shorts"));
+        JFileChooser fileChooser = new JFileChooser(new File("C:\\Users\\Jmeno\\Barcodes"));
         fileChooser.setFileFilter(new FileNameExtensionFilter("PNG soubory", "png"));
         fileChooser.setDialogTitle("Ulozit carovy kod");
 

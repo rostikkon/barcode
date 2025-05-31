@@ -454,7 +454,7 @@ public class Historie {
     }
 
     private String ulozitObrazek(CarovyKod kod, String vstup, int vyska, Barva barvaPozadi, Barva barvaCar, boolean zobrazitTextPodKodem) throws IOException {
-        JFileChooser fileChooser = new JFileChooser(new File("D:\\YouTube Shorts"));
+        JFileChooser fileChooser = new JFileChooser(new File("C:\\Users\\Jmeno\\Barcodes"));
         fileChooser.setFileFilter(new FileNameExtensionFilter("PNG soubory", "png"));
         fileChooser.setDialogTitle("Ulozit carovy kod");
 
